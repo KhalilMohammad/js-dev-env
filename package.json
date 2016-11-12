@@ -4,13 +4,15 @@
     "description": "JavaScript development environment by dev-khalil",
     "scripts": {
         "prestart": "babel-node buildScripts/startMessage.js",
-        "start": "npm-run-all --parallel security-check open:source lint:watch",
+        "start": "npm-run-all --parallel security-check open:source lint:watch test:watch",
         "open:source": "babel-node buildScripts/srcServer.js",
         "lint": "esw webpack.config.*, src , buildScripts",
         "lint:watch": "npm run lint -- --watch",
         "security-check": "nsp check",
         "localtunnel": "lt --port: 3000",
-        "share": "npm-run-all --parallel open:src localtunnel"
+        "share": "npm-run-all --parallel open:src localtunnel",
+        "test": "mohca --reporter progress buildScripts/testSetup.js \"src/**/*test.js\"",
+        "test:watch": "npm run test -- --watch"
     },
     "author": "Khalil Mohammad Mirza",
     "license": "MIT",
